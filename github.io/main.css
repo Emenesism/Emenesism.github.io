@@ -1,0 +1,187 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+}
+
+.wrapper {
+  padding: 2rem;
+  max-width: 800px;
+  background-color: #1e2128;
+  border-radius: 8px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.header {
+  background-color: #2f343f;
+  display: flex;
+  padding: 1rem;
+  margin: 0.5rem;
+  border-radius: 8px;
+  height: 2rem;
+  align-items: center;
+}
+
+.terminaltext {
+  font-family: "Inter";
+  font-size: 1rem;
+  margin-right: 1rem;
+  color: white;
+}
+
+.button-container {
+  display: flex;
+  margin-left: auto;
+}
+
+.max-button,
+.minimize-button,
+.fullscreen-button {
+  display: flex;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+}
+
+.max-button {
+  background-color: #2cc640;
+  margin-right: 0.5rem;
+}
+
+.fullscreen-button {
+  background-color: #f26156;
+}
+
+.minimize-button {
+  background-color: #fdbf2e;
+  margin-right: 0.5rem;
+}
+
+.main-terminal {
+  background-color: black;
+  color: white;
+  margin: 0.5rem;
+  height: 25rem;
+  border-radius: 8px;
+  overflow-y: auto;
+  font-family: "Source Code Pro";
+  font-size: 1.3rem;
+  padding: 0.5rem;
+}
+
+.terminal-line {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.000001rem;
+}
+
+.linux {
+  color: #33cc33;
+  margin-right: 0.3rem;
+  margin-bottom: 0.25rem;
+}
+
+.command {
+  color: white;
+  margin-right: 0.5rem;
+}
+
+.answer {
+  color: #cccccc;
+  margin-bottom: 0.1rem;
+}
+
+p {
+  margin-bottom: 0.1rem;
+  margin-top: 0.1rem;
+}
+
+p.quete {
+  color: #cccccc;
+}
+
+a {
+  color: #cccccc;
+  text-decoration: none;
+  margin-bottom: 0.1rem;
+}
+
+.blink {
+  font-weight: bold;
+  animation: blink-animation 1s steps(2, start) infinite;
+  color: white;
+}
+
+@keyframes blink-animation {
+  50% {
+    opacity: 0;
+  }
+}
+
+.command-text {
+  color: #33cc33;
+  margin-right: 0.3rem;
+  margin-bottom: 0.25rem;
+}
+
+@media only screen and (max-width: 768px) {
+  .wrapper {
+    padding: 1rem;
+  }
+
+  .terminaltext,
+  .main-terminal,
+  .terminal-line {
+    font-size: 1rem;
+  }
+
+  .header {
+    padding: 0.8rem;
+  }
+
+  .max-button,
+  .minimize-button,
+  .fullscreen-button {
+    width: 0.8rem;
+    height: 0.8rem;
+  }
+
+  .main-terminal {
+    height: 20rem;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .wrapper {
+    padding: 0.5rem;
+  }
+
+  .terminaltext,
+  .main-terminal,
+  .terminal-line {
+    font-size: 0.9rem;
+  }
+
+  .header {
+    padding: 0.5rem;
+  }
+
+  .max-button,
+  .minimize-button,
+  .fullscreen-button {
+    width: 0.6rem;
+    height: 0.6rem;
+  }
+
+  .main-terminal {
+    height: 18rem;
+  }
+}
