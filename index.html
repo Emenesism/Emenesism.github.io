@@ -1,73 +1,576 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/main.css" />
-    <title>em</title>
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <div class="header">
-          <div class="terminaltext">
-            <p>em@arch:~</p>
-          </div>
-          <div class="button-container">
-            <div class="max-button"></div>
-            <div class="minimize-button"></div>
-            <div class="fullscreen-button"></div>
-          </div>
-        </div>
+<!doctype html>
+<html lang="en" data-theme="arch">
+<head>
+  <!-- Metadata -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Mahdi Nouri Sani | Backend Developer</title>
+  <meta name="description" content="Backend developer specializing in Go, Node.js, TypeScript, REST APIs, microservices, Docker and database-driven applications.">
+  <meta name="author" content="Mahdi Nouri Sani">
+  <meta name="theme-color" content="#070b10">
+  <link rel="canonical" href="https://example.github.io/">
+  <link rel="icon" href="assets/favicon.ico">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Mahdi Nouri Sani | Backend Developer">
+  <meta property="og:description" content="Backend developer specializing in Go, Node.js, TypeScript, REST APIs, microservices, Docker and database-driven applications.">
+  <meta property="og:url" content="https://example.github.io/">
+  <meta property="og:image" content="https://example.github.io/assets/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Mahdi Nouri Sani | Backend Developer">
+  <meta name="twitter:description" content="Go, Node.js and TypeScript Backend Developer">
+  <meta name="twitter:image" content="https://example.github.io/assets/og-image.png">
+
+  <!-- Styles -->
+  <style>
+    :root {
+      color-scheme: dark;
+      --page-bg: #070b10;
+      --terminal-bg: #0b1118;
+      --terminal-bg-alt: #101821;
+      --title-bg: #0d141c;
+      --text: #c9d4df;
+      --bright: #eef6fc;
+      --muted: #708090;
+      --faint: #43515f;
+      --accent: #1793d1;
+      --accent-secondary: #5bc0eb;
+      --success: #5fd38d;
+      --warning: #e5b567;
+      --error: #ef6b73;
+      --border: #263442;
+      --selection: rgba(23, 147, 209, .28);
+      --shadow: rgba(0, 0, 0, .62);
+      --grid: rgba(91, 192, 235, .025);
+      --font: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Monaco, monospace;
+    }
+
+    [data-theme="graphite"] { --page-bg:#090b0e; --terminal-bg:#0d1117; --terminal-bg-alt:#161b22; --title-bg:#10151c; --text:#c9d1d9; --bright:#f0f6fc; --muted:#7d8590; --faint:#484f58; --accent:#58a6ff; --accent-secondary:#79c0ff; --success:#56d364; --warning:#d29922; --error:#f85149; --border:#30363d; --selection:rgba(88,166,255,.24); --grid:rgba(201,209,217,.02); }
+    [data-theme="matrix"] { --page-bg:#020704; --terminal-bg:#030a05; --terminal-bg-alt:#071109; --title-bg:#040d06; --text:#a9d7b3; --bright:#d9ffe1; --muted:#608a69; --faint:#34543b; --accent:#46d369; --accent-secondary:#82ef98; --success:#58e17a; --warning:#d7bd5c; --error:#ef7373; --border:#183e22; --selection:rgba(70,211,105,.25); --grid:rgba(70,211,105,.025); }
+    [data-theme="amber"] { --page-bg:#0d0903; --terminal-bg:#120d06; --terminal-bg-alt:#1b1308; --title-bg:#160f07; --text:#e4c891; --bright:#ffe7ae; --muted:#9b7a49; --faint:#614a2b; --accent:#e9a93f; --accent-secondary:#ffd076; --success:#a9cd72; --warning:#f1bd58; --error:#e27162; --border:#4c3519; --selection:rgba(233,169,63,.25); --grid:rgba(233,169,63,.025); }
+    [data-theme="ubuntu"] { --page-bg:#100b12; --terminal-bg:#1b111c; --terminal-bg-alt:#251725; --title-bg:#211321; --text:#ddd3dd; --bright:#fff7ff; --muted:#9b879b; --faint:#655365; --accent:#e95420; --accent-secondary:#f59b78; --success:#6bcf8d; --warning:#e6b85c; --error:#ef6767; --border:#50304b; --selection:rgba(233,84,32,.25); --grid:rgba(245,155,120,.02); }
+    [data-theme="light"] { color-scheme:light; --page-bg:#e9e7e1; --terminal-bg:#f8f7f3; --terminal-bg-alt:#eeece6; --title-bg:#e4e2dc; --text:#27313a; --bright:#101820; --muted:#68747e; --faint:#a3a9ad; --accent:#087ca7; --accent-secondary:#006d91; --success:#247a4a; --warning:#9a6405; --error:#b9363e; --border:#c8c7c1; --selection:rgba(8,124,167,.2); --shadow:rgba(48,52,56,.24); --grid:rgba(39,49,58,.035); }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { width:100%; min-height:100%; margin:0; overflow:hidden; }
+    body {
+      min-height:100vh;
+      min-height:100dvh;
+      padding:clamp(10px, 2.2vw, 28px);
+      color:var(--text);
+      background:
+        radial-gradient(circle at 50% 8%, color-mix(in srgb, var(--accent) 10%, transparent), transparent 42%),
+        linear-gradient(var(--grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+        var(--page-bg);
+      background-size:auto, 28px 28px, 28px 28px, auto;
+      font-family:var(--font);
+      font-size:14px;
+      line-height:1.55;
+    }
+    ::selection { background:var(--selection); color:var(--bright); }
+    button, input { font:inherit; }
+    a { color:var(--accent-secondary); text-decoration-color:color-mix(in srgb, var(--accent-secondary) 52%, transparent); text-underline-offset:3px; overflow-wrap:anywhere; }
+    a:hover { color:var(--bright); }
+    a:focus-visible, button:focus-visible, input:focus-visible { outline:2px solid var(--accent-secondary); outline-offset:2px; }
+    .skip-link { position:fixed; z-index:100; left:12px; top:8px; padding:8px 12px; color:var(--terminal-bg); background:var(--bright); transform:translateY(-160%); }
+    .skip-link:focus { transform:translateY(0); }
+
+    /* Application Shell */
+    .desktop { width:min(1420px, 100%); height:calc(100vh - clamp(20px, 4.4vw, 56px)); height:calc(100dvh - clamp(20px, 4.4vw, 56px)); min-height:360px; margin:auto; display:flex; align-items:stretch; }
+    .terminal { width:100%; min-width:0; display:grid; grid-template-rows:42px minmax(0, 1fr) auto 27px; overflow:hidden; border:1px solid var(--border); border-radius:6px; background:var(--terminal-bg); box-shadow:0 24px 80px var(--shadow), 0 0 34px color-mix(in srgb, var(--accent) 5%, transparent); }
+
+    /* Terminal Window */
+    .titlebar { display:grid; grid-template-columns:auto minmax(0, 1fr) auto; align-items:center; gap:14px; min-width:0; padding:0 13px; border-bottom:1px solid var(--border); background:var(--title-bg); color:var(--muted); user-select:none; }
+    .window-controls { display:flex; gap:7px; align-items:center; }
+    .window-control { width:9px; height:9px; border:1px solid var(--faint); background:var(--terminal-bg-alt); }
+    .window-control:nth-child(2) { border-radius:50%; }
+    .window-control:nth-child(3) { transform:rotate(45deg) scale(.78); }
+    .title { min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; text-align:center; color:var(--text); font-size:12px; }
+    .terminal-mark { color:var(--accent); margin-right:7px; }
+    .session { display:flex; align-items:center; gap:8px; font-size:11px; white-space:nowrap; }
+    .session-dot { width:7px; height:7px; border-radius:50%; background:var(--success); box-shadow:0 0 0 2px color-mix(in srgb, var(--success) 14%, transparent); }
+
+    .history { min-height:0; overflow-y:auto; overflow-x:hidden; padding:18px 20px 12px; scroll-behavior:smooth; scrollbar-width:thin; scrollbar-color:var(--faint) var(--terminal-bg); }
+    .history::-webkit-scrollbar { width:9px; }
+    .history::-webkit-scrollbar-track { background:var(--terminal-bg); }
+    .history::-webkit-scrollbar-thumb { background:var(--faint); border:2px solid var(--terminal-bg); }
+    .output-block { margin:0 0 12px; min-width:0; }
+    .line { min-height:1.55em; white-space:pre-wrap; overflow-wrap:anywhere; word-break:break-word; }
+    .line + .line { margin-top:1px; }
+    .command-line { display:flex; align-items:baseline; gap:8px; color:var(--bright); }
+    .prompt-user { color:var(--success); }
+    .prompt-at { color:var(--muted); }
+    .prompt-host { color:var(--accent-secondary); }
+    .prompt-path { color:var(--accent); }
+    .prompt-symbol { color:var(--muted); }
+    .entered-command { min-width:0; white-space:pre-wrap; overflow-wrap:anywhere; }
+    .muted { color:var(--muted); }
+    .faint { color:var(--faint); }
+    .accent { color:var(--accent-secondary); }
+    .success { color:var(--success); }
+    .warning { color:var(--warning); }
+    .error { color:var(--error); }
+    .bright { color:var(--bright); font-weight:600; }
+    .section-title { margin:8px 0 4px; color:var(--bright); font-weight:700; }
+    .tag-row { display:flex; flex-wrap:wrap; gap:6px; margin:5px 0 11px; }
+    .tag { display:inline-block; padding:1px 7px; border:1px solid var(--border); background:var(--terminal-bg-alt); color:var(--text); }
+    .table-wrap { max-width:100%; overflow-x:auto; margin:3px 0 9px; scrollbar-width:thin; }
+    table { width:100%; border-collapse:collapse; font-size:13px; }
+    th, td { padding:5px 14px 5px 0; border-bottom:1px solid color-mix(in srgb, var(--border) 62%, transparent); text-align:left; vertical-align:top; white-space:normal; overflow-wrap:anywhere; }
+    th { color:var(--accent-secondary); font-weight:600; }
+    td:first-child { color:var(--bright); }
+    .timeline { margin:5px 0 10px; padding-left:16px; border-left:1px solid var(--border); }
+    .timeline-item { position:relative; padding:1px 0 15px 14px; }
+    .timeline-item::before { content:""; position:absolute; width:7px; height:7px; left:-20px; top:7px; border:1px solid var(--accent); background:var(--terminal-bg); }
+    .timeline-item:last-child { padding-bottom:2px; }
+    .key-value { display:grid; grid-template-columns:minmax(108px, 160px) minmax(0, 1fr); gap:2px 14px; margin:4px 0 10px; }
+    .key-value .key { color:var(--muted); }
+    .ascii { color:var(--accent-secondary); white-space:pre; overflow:hidden; line-height:1.15; font-size:clamp(8px, .82vw, 12px); margin:4px 0 13px; }
+    .compact-banner { display:none; color:var(--bright); border-left:3px solid var(--accent); padding:5px 10px; margin:4px 0 14px; font-weight:700; }
+    .neofetch { display:grid; grid-template-columns:minmax(150px, .5fr) minmax(260px, 1.5fr); gap:24px; align-items:start; }
+    .arch-logo { color:var(--accent-secondary); white-space:pre; line-height:1.05; font-size:12px; }
+    .json { color:var(--text); white-space:pre-wrap; overflow-wrap:anywhere; }
+    .status-chip { color:var(--success); }
+
+    .command-area { position:relative; display:flex; align-items:flex-start; gap:8px; min-height:45px; padding:10px 20px 9px; border-top:1px solid color-mix(in srgb, var(--border) 68%, transparent); background:var(--terminal-bg); }
+    .input-prompt { display:flex; flex:none; align-items:baseline; white-space:nowrap; }
+    #command-input { width:100%; min-width:0; height:24px; margin:0; padding:0; border:0; outline:0; resize:none; color:transparent; caret-color:var(--accent-secondary); background:transparent; text-shadow:0 0 0 var(--bright); appearance:none; }
+    #command-input::selection { color:transparent; text-shadow:none; background:var(--selection); }
+    #command-input:disabled { cursor:not-allowed; }
+    .reconnect { display:none; align-items:center; gap:8px; margin-left:auto; padding:4px 10px; border:1px solid var(--accent); border-radius:2px; color:var(--bright); background:var(--terminal-bg-alt); cursor:pointer; }
+    .reconnect.visible { display:inline-flex; }
+
+    .statusbar { display:flex; align-items:center; min-width:0; overflow:hidden; border-top:1px solid var(--border); background:var(--terminal-bg-alt); font-size:11px; user-select:none; }
+    .mode { height:100%; display:flex; align-items:center; padding:0 10px; color:var(--terminal-bg); background:var(--accent); font-weight:700; }
+    .status-segment { padding:0 10px; border-right:1px solid var(--border); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .status-spacer { flex:1; }
+    .status-clock { color:var(--bright); }
+    .matrix-overlay { position:fixed; inset:0; z-index:50; pointer-events:none; opacity:.17; overflow:hidden; color:var(--success); font-size:13px; line-height:1; }
+    .matrix-column { position:absolute; top:-20%; white-space:pre; animation:matrix-fall var(--speed) linear forwards; }
+    @keyframes matrix-fall { to { transform:translateY(125vh); opacity:0; } }
+
+    @media (max-width:700px) {
+      body { padding:4px; font-size:13px; }
+      .desktop { height:calc(100vh - 8px); height:calc(100dvh - 8px); }
+      .terminal { grid-template-rows:38px minmax(0, 1fr) auto 25px; border-radius:3px; }
+      .titlebar { padding:0 9px; gap:8px; }
+      .window-control { width:8px; height:8px; }
+      .session .session-label, .title-theme { display:none; }
+      .history { padding:13px 11px 8px; }
+      .command-area { padding:10px 11px 8px; overflow-x:auto; }
+      .ascii { display:none; }
+      .compact-banner { display:block; }
+      .neofetch { grid-template-columns:1fr; gap:9px; }
+      .arch-logo { font-size:9px; }
+      .key-value { grid-template-columns:96px minmax(0,1fr); gap:2px 9px; }
+      .status-hide-mobile { display:none; }
+      .status-segment { padding:0 7px; }
+      th, td { min-width:95px; padding-right:10px; }
+    }
+    @media (max-width:420px) {
+      .prompt-at, .prompt-host { display:none; }
+      .title { text-align:left; }
+      .status-hide-small { display:none; }
+      .key-value { grid-template-columns:1fr; }
+      .key-value .key { margin-top:4px; }
+    }
+    @media (prefers-reduced-motion:reduce) {
+      *, *::before, *::after { scroll-behavior:auto !important; animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#command-input">Skip to terminal input</a>
+
+  <!-- Application Shell -->
+  <main class="desktop" aria-label="Mahdi Nouri Sani terminal portfolio">
+    <!-- Terminal Window -->
+    <section class="terminal" id="terminal" aria-label="Interactive browser terminal">
+      <header class="titlebar">
+        <div class="window-controls" aria-hidden="true"><span class="window-control"></span><span class="window-control"></span><span class="window-control"></span></div>
+        <div class="title"><span class="terminal-mark">▣</span>guest@mahdi-portfolio: ~</div>
+        <div class="session"><span class="session-dot" aria-hidden="true"></span><span class="session-label">CONNECTED</span><span class="title-theme">arch</span></div>
       </header>
+      <div class="history" id="terminal-history" role="log" aria-live="polite" aria-atomic="false" aria-relevant="additions text"></div>
+      <form class="command-area" id="command-form" autocomplete="off">
+        <label class="input-prompt" for="command-input"><span class="prompt-user">guest</span><span class="prompt-at">@</span><span class="prompt-host">mahdi-portfolio</span><span>:</span><span class="prompt-path" id="prompt-path">~/portfolio</span><span class="prompt-symbol">$</span></label>
+        <input id="command-input" name="command" type="text" inputmode="text" autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false" aria-label="Terminal command input">
+        <button class="reconnect" id="reconnect" type="button" aria-label="Reconnect terminal">↻ Reconnect</button>
+      </form>
+      <footer class="statusbar" aria-label="Terminal status">
+        <span class="mode">NORMAL</span>
+        <span class="status-segment status-hide-small">guest@mahdi-portfolio</span>
+        <span class="status-segment" id="status-path">~/portfolio</span>
+        <span class="status-spacer"></span>
+        <span class="status-segment status-hide-mobile">UTF-8</span>
+        <span class="status-segment status-hide-mobile">theme: <span id="status-theme">arch</span></span>
+        <time class="status-segment status-clock" id="status-clock"></time>
+      </footer>
+    </section>
+  </main>
 
-      <div class="main-terminal">
-        <div class="first-text">
-          <div class="terminal-line">
-            <p class="linux">em@arch:~$</p>
-            <p class="command">cat /etc/whoami.txt</p>
-          </div>
-          <p class="answer">I'm Mahdi Nouris</p>
-        </div>
-        <div class="second-text">
-          <div class="terminal-line">
-            <p class="linux">em@arch:~$</p>
-            <p class="command">cat /tmp/more.txt</p>
-          </div>
-          <p class="answer">Whiz in backend development.</p>
-          <p class="answer">Interested in low-level programming.</p>
-          <p class="answer">Driven by my love for RAM and ROM.</p>
-                <p class="answer">"In the world of zeros and ones, every byte matters."</p>
-            
-          </p>
-        </div>
-    <div class="connection">
-      <div class="terminal-line">
-        <p class="linux">em@arch:~$</p>
-        <p class="command">netstat -tuln</p>
-      </div>
-      <p><span>Telegram:</span> <a href="https://t.me/emenesism">emenesism</a></p>
-      <p><span>LinkedIn:</span> <a href="https://ir.linkedin.com/in/mahdi-nourisani-736652324?trk=org-employees">mahdi-nourisani</a></p>
-      <p><span>GitHub:</span> <a href="https://github.com/emenesism">emenesism</a></p>
-      <p><span>Email:</span> <span class="email">mhdnris@gmail.com</span></p>
-    </div>
+  <script>
+    "use strict";
 
-    <div class="last-command">
-        <div class="last-arch">
-            <p class="command-text">em@arch:~$ <span class="blink">|</span></p>
-        </div>
-    </div>
+    /* Portfolio Data */
+    const portfolioData = {
+      identity: {
+        name: "Mahdi Nouri Sani", nameFa: "مهدی نوری ثانی", username: "emenesism", role: "Backend Developer",
+        headline: "Go, Node.js and TypeScript Backend Developer", location: "Tabriz, Iran", locationFa: "تبریز",
+        birthDate: "Tir 1383", maritalStatus: "Single", militaryStatus: "Educational exemption",
+        email: "mhdnris@gmail.com", phone: "09911890208"
+      },
+      privacy: {
+        showPhoneByDefault: false, showBirthDateByDefault: false, showMaritalStatusByDefault: false,
+        showMilitaryStatusByDefault: false, allowPrivateContactOutput: false
+      },
+      links: {
+        github: "https://github.com/emenesism", telegram: "https://t.me/emenesism",
+        linkedin: "https://www.linkedin.com/in/mahdi-nourisani-miyab-5a8215372", website: "", resume: "assets/resume.pdf"
+      },
+      summary: [
+        "Backend developer experienced in building APIs and service-oriented systems with Go, Node.js and TypeScript.",
+        "My work includes microservice communication, secure authentication, payment workflows, order management, Docker-based deployment, Persian language models and Ethereum-backed applications.",
+        "I focus on maintainable backend architecture, secure service communication and practical product development."
+      ],
+      skills: {
+        languages: ["Go", "TypeScript", "JavaScript", "Python"],
+        backend: ["Gin", "Node.js", "NestJS", "Express.js", "REST APIs", "Microservices"],
+        databasesAndCaching: ["MySQL", "Redis"], dataAccess: ["Prisma", "Sequelize", "GORM"],
+        devopsAndTools: ["Docker", "Docker Compose", "Git", "Swagger"],
+        aiAndData: ["Machine Learning", "Language-model dataset preparation", "Persian legal text processing"],
+        blockchain: ["Ethereum", "Solidity", "Ganache", "go-ethereum"]
+      },
+      spokenLanguages: [{ name: "English", proficiency: 3, maximum: 5 }],
+      experience: [
+        { id: "shaytech", company: "Shaytech", role: "Backend Developer", location: "Tehran", start: "Azar 1402", end: "Bahman 1403", description: [] },
+        { id: "daayar", company: "Daayar", role: "Backend Developer", location: "Tabriz", start: "Mehr 1404", end: "Azar 1404", description: [] }
+      ],
+      education: [{ institution: "Shahid Madani University of Azerbaijan", degree: "Bachelor of Computer Engineering", concentration: "Artificial Intelligence", start: "Mehr 1401", end: "Shahrivar 1405", location: "Azerbaijan, Iran" }],
+      projects: [
+        { id:"asino", number:1, name:"Asino", organization:"Shaytech", start:"Ordibehesht 1403", end:"Bahman 1403", type:"Landing Page Builder", status:"Completed", url:"https://asino.ir", repository:"", technologies:["Express.js","Node.js","Microservices","Authentication","Payment services"], summary:"A landing-page builder developed with Express.js and a microservice architecture.", details:["Independent services handle payment processing, users, landing-page creation and page management.","A major challenge was securing communication between microservices, particularly for payments and sensitive data.","The communication layer was protected through service authentication, tokenization and secure service-to-service communication."] },
+        { id:"divan-lm", number:2, name:"Divan-LM", organization:"Personal / Research", start:"Tir 1404", end:"Azar 1404", type:"Persian Legal Language Model", status:"Completed", url:"", repository:"https://github.com/Emenesism/DIVAN-LM", technologies:["Python","Machine Learning","Language Models","Persian NLP","Dataset Preparation"], summary:"A Persian language model focused on Iranian law and trained using local legal material.", details:["Designed to assist lawyers and researchers with answering, analyzing and summarizing legal questions and documents.","Training material was collected from legal books and reliable legal question-and-answer sources.","The data was cleaned and standardized to preserve legal terminology and improve consistency.","The model can run locally and can support preliminary consultation, legal concept retrieval and text processing."] },
+        { id:"decentralized-voting", number:3, name:"Decentralized Voting", organization:"Personal", start:"Tir 1404", end:"Mordad 1404", type:"Blockchain Voting Backend", status:"Completed", url:"", repository:"https://github.com/Emenesism/Decentralized_voting_backend", technologies:["Go","Gin","GORM","MySQL","JWT","Ethereum","Solidity","Ganache","go-ethereum"], summary:"A decentralized voting system with a Go backend and Ethereum-based vote storage.", details:["Users register and authenticate with JWT before voting.","Each vote is stored as a transaction on a local Ethereum blockchain using Solidity and Ganache.","Votes remain publicly observable on the blockchain to support transparency.","The backend uses Gin, GORM, MySQL and go-ethereum."] },
+        { id:"farmanie-api", number:4, name:"Farmanie Online API", organization:"Sodev", start:"Farvardin 1404", end:"Tir 1404", type:"Online Laundry Platform API", status:"Completed", url:"", repository:"", technologies:["Node.js","TypeScript","REST API","Payments","SMS notifications","Swagger","Maps"], summary:"A Node.js and TypeScript backend API for an online laundry platform.", details:["Supports user management, order scheduling, driver assignment and workshop-process tracking.","Includes secure payments, wallet charging, discounts, coupons and SMS notifications.","Supports driver-route optimization based on map information.","Includes Swagger documentation for integration."] },
+        { id:"wow-online-shop", number:5, name:"WOW Service Online Shop", organization:"Shayteck", start:"Mordad 1403", end:"Mehr 1403", type:"Online Gift Shop API", status:"Completed", url:"", repository:"", technologies:["Node.js","TypeScript","JWT","REST API","Online payments","Swagger","Docker Compose"], summary:"A Node.js and TypeScript backend API for an online gift store.", details:["Includes JWT authentication, shopping-cart management, product browsing and online payments.","Provides an administration panel for products, categories and users.","Supports discounts, reporting and Swagger documentation.","Includes Docker Compose support for scalable deployment and integration with a web application or Telegram bot."] }
+      ]
+    };
 
-      </div>
-    </div>  
-  </body>
+    const HOME = "/home/guest";
+    const ROOT = "/home/guest/portfolio";
+    const THEMES = ["arch", "graphite", "matrix", "amber", "ubuntu", "light"];
+    const MAX_COMMAND_HISTORY = 100;
+    const MAX_OUTPUT_BLOCKS = 320;
+    const sessionStarted = Date.now();
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const historyElement = document.getElementById("terminal-history");
+    const inputElement = document.getElementById("command-input");
+    const formElement = document.getElementById("command-form");
+    const terminalElement = document.getElementById("terminal");
+    const reconnectButton = document.getElementById("reconnect");
+    let currentPath = ROOT;
+    let commandHistory = readStorage("portfolio-command-history", []);
+    let historyIndex = commandHistory.length;
+    let activeOperation = null;
+    let matrixTimer = null;
+    let connected = true;
+
+    /* Utility Functions */
+    function readStorage(key, fallback) {
+      try { const value = JSON.parse(localStorage.getItem(key)); return value === null ? fallback : value; }
+      catch (_) { return fallback; }
+    }
+    function writeStorage(key, value) { try { localStorage.setItem(key, JSON.stringify(value)); } catch (_) {} }
+    function delay(milliseconds) { return new Promise(resolve => setTimeout(resolve, milliseconds)); }
+    function scrollToBottom() { requestAnimationFrame(() => { historyElement.scrollTop = historyElement.scrollHeight; }); }
+    function pruneOutput() { while (historyElement.children.length > MAX_OUTPUT_BLOCKS) historyElement.firstElementChild.remove(); }
+    function outputBlock() { const block = document.createElement("div"); block.className = "output-block"; historyElement.append(block); pruneOutput(); return block; }
+    function printText(text, className = "", parent = null) {
+      const line = document.createElement("div"); line.className = `line ${className}`.trim(); line.textContent = String(text);
+      (parent || outputBlock()).append(line); scrollToBottom(); return line;
+    }
+    const printLine = printText;
+    function printError(message, parent) { return printText(message, "error", parent); }
+    function printWarning(message, parent) { return printText(message, "warning", parent); }
+    function printSuccess(message, parent) { return printText(message, "success", parent); }
+    function printCommand(commandText) {
+      const block = outputBlock(); const line = document.createElement("div"); line.className = "command-line line";
+      const prompt = document.createElement("span"); prompt.append(promptFragment());
+      const command = document.createElement("span"); command.className = "entered-command"; command.textContent = commandText;
+      line.append(prompt, command); block.append(line); return block;
+    }
+    function promptFragment() {
+      const fragment = document.createDocumentFragment();
+      [["guest","prompt-user"],["@","prompt-at"],["mahdi-portfolio","prompt-host"],[":",""],[displayPath(currentPath),"prompt-path"],["$","prompt-symbol"]].forEach(([text, className]) => {
+        const span = document.createElement("span"); span.className = className; span.textContent = text; fragment.append(span);
+      });
+      return fragment;
+    }
+    function printTable(headers, rows, parent = null) {
+      const block = parent || outputBlock(); const wrap = document.createElement("div"); wrap.className = "table-wrap";
+      const table = document.createElement("table"); const head = document.createElement("thead"); const headRow = document.createElement("tr");
+      headers.forEach(label => { const th = document.createElement("th"); th.textContent = label; headRow.append(th); }); head.append(headRow); table.append(head);
+      const body = document.createElement("tbody"); rows.forEach(row => { const tr = document.createElement("tr"); row.forEach(value => { const td = document.createElement("td"); td.textContent = String(value); tr.append(td); }); body.append(tr); });
+      table.append(body); wrap.append(table); block.append(wrap); scrollToBottom(); return wrap;
+    }
+    function printJson(value, parent = null) { return printText(JSON.stringify(value, null, 2), "json", parent); }
+    function printLink(label, href, parent = null, download = false) {
+      if (!isSafeUrl(href)) return printError(`Unsafe link blocked: ${label}`, parent);
+      const block = parent || outputBlock(); const line = document.createElement("div"); line.className = "line";
+      const anchor = document.createElement("a"); anchor.textContent = label; anchor.href = href; anchor.target = "_blank"; anchor.rel = "noopener noreferrer";
+      if (download) anchor.download = "Mahdi-Nouri-Sani-Resume.pdf";
+      line.append(anchor); block.append(line); scrollToBottom(); return anchor;
+    }
+    function isSafeUrl(url) { return /^https:\/\//i.test(url) || /^mailto:/i.test(url) || /^assets\/[a-z0-9._/-]+$/i.test(url); }
+    function openSafe(url, label) {
+      if (!isSafeUrl(url)) { printError(`open: ${label}: URL is unavailable or unsafe`); return; }
+      const opened = window.open(url, "_blank", "noopener,noreferrer");
+      if (!opened) { const block = outputBlock(); printWarning("The browser blocked the new tab. Use this link instead:", block); printLink(label, url, block); }
+    }
+    function addKeyValue(rows, parent = null) {
+      const block = parent || outputBlock(); const grid = document.createElement("div"); grid.className = "key-value";
+      rows.forEach(([key, value]) => { const keyNode = document.createElement("div"); keyNode.className = "key"; keyNode.textContent = key; const valueNode = document.createElement("div"); valueNode.dir = "auto"; valueNode.textContent = String(value); grid.append(keyNode, valueNode); });
+      block.append(grid); return grid;
+    }
+    function addTags(values, parent = null) { const block = parent || outputBlock(); const row = document.createElement("div"); row.className = "tag-row"; values.forEach(value => { const tag = document.createElement("span"); tag.className = "tag"; tag.textContent = value; row.append(tag); }); block.append(row); return row; }
+    function title(text, parent) { return printText(text, "section-title", parent); }
+    function displayPath(path) { return path === HOME ? "~" : path.startsWith(`${HOME}/`) ? `~/${path.slice(HOME.length + 1)}` : path; }
+    function updatePathUI() { const path = displayPath(currentPath); document.getElementById("prompt-path").textContent = path; document.getElementById("status-path").textContent = path; }
+    function formatCategory(name) { return name.replace(/([A-Z])/g, " $1").replace(/^./, c => c.toUpperCase()); }
+    function tokenize(input) {
+      const tokens = []; let token = ""; let quote = null; let escaped = false;
+      for (const char of input.trim()) {
+        if (escaped) { token += char; escaped = false; continue; }
+        if (char === "\\" && quote !== "'") { escaped = true; continue; }
+        if (quote) { if (char === quote) quote = null; else token += char; continue; }
+        if (char === '"' || char === "'") { quote = char; continue; }
+        if (/\s/.test(char)) { if (token) { tokens.push(token); token = ""; } } else token += char;
+      }
+      if (escaped) token += "\\"; if (token) tokens.push(token); return { tokens, unclosedQuote: quote };
+    }
+    function levenshtein(a, b) {
+      const matrix = Array.from({ length:b.length + 1 }, (_, row) => [row]);
+      for (let column = 0; column <= a.length; column++) matrix[0][column] = column;
+      for (let row = 1; row <= b.length; row++) for (let column = 1; column <= a.length; column++) matrix[row][column] = b[row - 1] === a[column - 1] ? matrix[row - 1][column - 1] : Math.min(matrix[row - 1][column - 1], matrix[row][column - 1], matrix[row - 1][column]) + 1;
+      return matrix[b.length][a.length];
+    }
+    function closestCommand(input) {
+      return Object.keys(commands).concat(Object.keys(aliases)).map(name => [name, levenshtein(input, name)]).sort((a,b) => a[1]-b[1])[0];
+    }
+    function plural(count, word) { return `${count} ${word}${count === 1 ? "" : "s"}`; }
+
+    /* Virtual Filesystem */
+    function projectMarkdown(project) {
+      return [`# ${project.name}`,`Organization: ${project.organization}`,`Dates: ${project.start} to ${project.end}`,`Type: ${project.type}`,`Status: ${project.status}`,`Technologies: ${project.technologies.join(", ")}`,"",project.summary,"",...project.details.map(detail => `- ${detail}`), project.repository ? `Repository: ${project.repository}` : "", project.url ? `Live URL: ${project.url}` : ""].filter(Boolean).join("\n");
+    }
+    function buildVirtualFiles() {
+      const education = portfolioData.education[0];
+      const files = new Map([
+        [`${ROOT}/README.md`, `# ${portfolioData.identity.name}\n${portfolioData.identity.headline}\n\n${portfolioData.summary.join("\n\n")}\n\nRun \"help\" to explore this browser-based portfolio terminal.`],
+        [`${ROOT}/about.txt`, portfolioData.summary.join("\n\n")],
+        [`${ROOT}/skills.json`, JSON.stringify(portfolioData.skills, null, 2)],
+        [`${ROOT}/experience.log`, portfolioData.experience.map(item => `${item.start} - ${item.end} | ${item.role} | ${item.company} | ${item.location}`).join("\n")],
+        [`${ROOT}/education.txt`, `${education.institution}\n${education.degree}\n${education.concentration} concentration\n${education.start} to ${education.end}\n${education.location}`],
+        [`${ROOT}/contact.vcard`, `BEGIN:VCARD\nVERSION:4.0\nFN:${portfolioData.identity.name}\nTITLE:${portfolioData.identity.role}\nEMAIL:${portfolioData.identity.email}\nURL:${portfolioData.links.github}\nADR:;;${portfolioData.identity.location};;;;\nEND:VCARD`],
+        [`${ROOT}/resume.pdf`, "PDF document: assets/resume.pdf"],
+        [`${ROOT}/links/github.url`, portfolioData.links.github], [`${ROOT}/links/linkedin.url`, portfolioData.links.linkedin], [`${ROOT}/links/telegram.url`, portfolioData.links.telegram]
+      ]);
+      portfolioData.projects.forEach(project => files.set(`${ROOT}/projects/${project.id}.md`, projectMarkdown(project)));
+      return files;
+    }
+    const virtualFiles = buildVirtualFiles();
+    const virtualDirs = new Set(["/", "/home", HOME, ROOT, `${ROOT}/projects`, `${ROOT}/links`]);
+    function normalizePath(target = ".") {
+      const raw = target === "~" ? HOME : target.startsWith("~/") ? HOME + target.slice(1) : target.startsWith("/") ? target : `${currentPath}/${target}`;
+      const parts = []; raw.split("/").forEach(part => { if (!part || part === ".") return; if (part === "..") parts.pop(); else parts.push(part); });
+      return `/${parts.join("/")}`;
+    }
+    function childrenOf(directory, includeHidden = false) {
+      const prefix = directory === "/" ? "/" : `${directory}/`; const names = new Map();
+      virtualDirs.forEach(path => { if (path.startsWith(prefix) && path !== directory) { const rest = path.slice(prefix.length); if (rest && !rest.includes("/")) names.set(rest, "dir"); } });
+      virtualFiles.forEach((_, path) => { if (path.startsWith(prefix)) { const rest = path.slice(prefix.length); if (rest && !rest.includes("/")) names.set(rest, "file"); } });
+      return [...names].filter(([name]) => includeHidden || !name.startsWith(".")).sort((a,b) => a[0].localeCompare(b[0]));
+    }
+    function walkFiles(directory) { return [...virtualFiles.keys()].filter(path => path === directory || path.startsWith(`${directory}/`)); }
+    function fileLabel(path) { return path.startsWith(`${ROOT}/`) ? path.slice(ROOT.length + 1) : path; }
+    function globToRegExp(glob) { return new RegExp(`^${glob.replace(/[.+^${}()|[\]\\]/g, "\\$&").replace(/\*/g, ".*").replace(/\?/g, ".")}$`); }
+
+    /* Terminal Parser */
+    const aliases = { "?":"help", h:"help", whoam:"whoami", who:"whoami", me:"about", work:"experience", jobs:"experience", portfolio:"projects", proj:"projects", edu:"education", github:"open github", linkedin:"open linkedin", telegram:"open telegram", mail:"contact email", dir:"ls", cls:"clear", reset:"clear", nf:"neofetch" };
+    async function runCommand(rawInput) {
+      const raw = rawInput.trim(); if (!raw) return;
+      printCommand(rawInput);
+      commandHistory.push(rawInput); commandHistory = commandHistory.slice(-MAX_COMMAND_HISTORY); historyIndex = commandHistory.length; writeStorage("portfolio-command-history", commandHistory);
+      const parsed = tokenize(raw); if (parsed.unclosedQuote) { printError("portfolio-sh: unclosed quote"); return; }
+      let name = (parsed.tokens.shift() || "").toLowerCase(); let args = parsed.tokens;
+      if (aliases[name]) { const aliasTokens = tokenize(aliases[name]).tokens; name = aliasTokens.shift(); args = aliasTokens.concat(args); }
+      const command = commands[name];
+      if (!command) { printError(`portfolio-sh: command not found: ${name}`); const suggestion = closestCommand(name); if (suggestion && suggestion[1] <= Math.max(2, Math.floor(name.length / 3))) printWarning(`Did you mean "${aliases[suggestion[0]]?.split(" ")[0] || suggestion[0]}"?`); printText('Type "help" to list available commands.', "muted"); return; }
+      try { await command.execute(args, { raw, name }); }
+      catch (error) { printError(`portfolio-sh: ${error instanceof Error ? error.message : "command failed safely"}`); }
+      scrollToBottom();
+    }
+    function commandDefinition(description, usage, execute) { return { description, usage, execute }; }
+
+    /* Command Registry */
+    const commands = {
+      help: commandDefinition("List commands or show command help", "help [command]", args => {
+        if (args[0]) { const requested = args[0].toLowerCase(); const resolved = aliases[requested]?.split(" ")[0] || requested; const item = commands[resolved]; if (!item) return printError(`help: no help topic for ${args[0]}`); const block = outputBlock(); title(resolved, block); printText(`Usage: ${item.usage}`, "accent", block); printText(item.description, "", block); return; }
+        const rows = Object.entries(commands).map(([name, item]) => [name, item.usage, item.description]); printTable(["COMMAND","USAGE","DESCRIPTION"], rows); printText('Aliases: ? h whoam who me work jobs portfolio proj edu github linkedin telegram mail dir cls reset nf', "muted");
+      }),
+      whoami: commandDefinition("Show portfolio identity", "whoami [--full|--private]", args => {
+        const block = outputBlock(); const identity = portfolioData.identity;
+        if (args.includes("--full")) { addKeyValue([["Name",identity.name],["Persian name",identity.nameFa],["Role",identity.role],["Location",identity.location],["Email",identity.email],["GitHub",portfolioData.links.github],["Education",`${portfolioData.education[0].degree}, ${portfolioData.education[0].institution}`]], block); return; }
+        if (args.includes("--private")) {
+          title("Private résumé fields", block); let shown = 0;
+          [["Phone","showPhoneByDefault","phone"],["Birth date","showBirthDateByDefault","birthDate"],["Marital status","showMaritalStatusByDefault","maritalStatus"],["Military status","showMilitaryStatusByDefault","militaryStatus"]].forEach(([label, flag, field]) => { if (portfolioData.privacy[flag]) { printText(`${label}: ${identity[field]}`, "", block); shown++; } });
+          if (!shown) printWarning("Private fields are disabled by the portfolio privacy configuration.", block); return;
+        }
+        printText("mahdi", "bright", block); printText(identity.role, "", block); printText(identity.location, "muted", block);
+      }),
+      about: commandDefinition("Read the résumé summary", "about [--compact|--full]", args => {
+        const block = outputBlock(); const compact = args.includes("--compact"); portfolioData.summary.slice(0, compact ? 1 : undefined).forEach(line => printText(line, "", block));
+        if (args.includes("--full")) addKeyValue([["Headline",portfolioData.identity.headline],["Location",portfolioData.identity.location],["Focus","Maintainable backend architecture and secure service communication"]], block);
+      }),
+      skills: commandDefinition("Browse technical skills", "skills [category|--compact|--json]", args => {
+        if (args.includes("--json")) return printJson(portfolioData.skills);
+        const compact = args.includes("--compact"); const categoryArg = args.find(arg => !arg.startsWith("--"));
+        const categoryMap = { backend:"backend", blockchain:"blockchain", ai:"aiAndData", languages:"languages", data:"databasesAndCaching", devops:"devopsAndTools" };
+        const entries = categoryArg ? [[categoryMap[categoryArg.toLowerCase()] || categoryArg, portfolioData.skills[categoryMap[categoryArg.toLowerCase()] || categoryArg]]] : Object.entries(portfolioData.skills);
+        if (entries.some(([, values]) => !values)) return printError(`skills: unknown category: ${categoryArg}. Try backend, blockchain, ai, languages, data or devops.`);
+        if (compact) return printTable(["CATEGORY","SKILLS"], entries.map(([name, values]) => [formatCategory(name), values.join(", ")]));
+        const block = outputBlock(); entries.forEach(([name, values]) => { title(formatCategory(name), block); addTags(values, block); });
+      }),
+      stack: commandDefinition("Show the primary technology stack", "stack", () => printTable(["AREA","TECHNOLOGIES"], [["Languages",portfolioData.skills.languages.join(", ")],["Backend",portfolioData.skills.backend.slice(0,4).join(", ")],["Data",[...portfolioData.skills.databasesAndCaching,...portfolioData.skills.dataAccess].join(", ")],["DevOps",portfolioData.skills.devopsAndTools.join(", ")]])),
+      experience: commandDefinition("Show employment history", "experience [shaytech|daayar]", args => {
+        const filter = args[0]?.toLowerCase(); const records = filter ? portfolioData.experience.filter(item => item.id === filter || item.company.toLowerCase() === filter) : portfolioData.experience;
+        if (!records.length) return printError(`experience: unknown record: ${args[0]}`);
+        const block = outputBlock(); const timeline = document.createElement("div"); timeline.className = "timeline"; records.forEach(item => { const row = document.createElement("div"); row.className = "timeline-item"; printText(`${item.role} · ${item.company}`, "bright", row); printText(`${item.start} → ${item.end}`, "accent", row); printText(item.location, "muted", row); timeline.append(row); }); block.append(timeline);
+      }),
+      education: commandDefinition("Show education", "education", () => { const item = portfolioData.education[0]; addKeyValue([["Institution",item.institution],["Degree",item.degree],["Concentration",`${item.concentration} concentration`],["Dates",`${item.start} to ${item.end}`],["Location",item.location]]); }),
+      projects: commandDefinition("List portfolio projects", "projects [--long|--json|--links]", args => {
+        if (args.includes("--json")) return printJson(portfolioData.projects);
+        if (args.includes("--links")) { const block = outputBlock(); portfolioData.projects.forEach(project => { const url = project.repository || project.url; if (url) printLink(`${project.number}. ${project.name} — ${project.repository ? "repository" : "live site"}`, url, block); else printText(`${project.number}. ${project.name} — no public link`, "muted", block); }); return; }
+        const rows = portfolioData.projects.map(project => [project.number, project.name, project.organization, project.type, `${project.start} → ${project.end}`, args.includes("--long") ? project.technologies.join(", ") : project.technologies.slice(0,3).join(", "), project.repository ? "repository" : project.url ? "live" : "—"]); printTable(["#","PROJECT","ORG","TYPE","DATES","TECH","LINK"], rows);
+      }),
+      project: commandDefinition("Show one project's details", "project <number|id>", args => {
+        const key = (args[0] || "").toLowerCase(); const project = portfolioData.projects.find(item => String(item.number) === key || item.id === key);
+        if (!project) { printError(`project: unknown project: ${args[0] || "missing argument"}`); return printText(`Available IDs: ${portfolioData.projects.map(item => item.id).join(", ")}`, "muted"); }
+        const block = outputBlock(); title(`${project.number}. ${project.name}`, block); addKeyValue([["Organization",project.organization],["Dates",`${project.start} to ${project.end}`],["Type",project.type],["Status",project.status]], block); title("Technology stack", block); addTags(project.technologies, block); title("Summary", block); printText(project.summary, "", block); title("Details", block); project.details.forEach(detail => printText(`• ${detail}`, "", block)); if (project.repository) printLink(`Repository: ${project.repository}`, project.repository, block); if (project.url) printLink(`Live site: ${project.url}`, project.url, block);
+      }),
+      contact: commandDefinition("Show contact channels", "contact [--full|email|github|linkedin|telegram]", args => {
+        const identity = portfolioData.identity; const requested = args[0]?.toLowerCase(); const values = { email:[identity.email,`mailto:${identity.email}`], github:[portfolioData.links.github,portfolioData.links.github], linkedin:[portfolioData.links.linkedin,portfolioData.links.linkedin], telegram:[portfolioData.links.telegram,portfolioData.links.telegram] };
+        if (requested && requested !== "--full") { if (!values[requested]) return printError(`contact: unknown channel: ${args[0]}`); return printLink(`${requested}: ${values[requested][0]}`, values[requested][1]); }
+        const block = outputBlock(); Object.entries(values).forEach(([name, value]) => printLink(`${formatCategory(name)}: ${value[0]}`, value[1], block)); printText(`Location: ${identity.location}`, "", block);
+        if (requested === "--full") { if (portfolioData.privacy.showPhoneByDefault || portfolioData.privacy.allowPrivateContactOutput) printText(`Phone: ${identity.phone}`, "", block); else printWarning("Phone output is disabled by the public portfolio privacy configuration.", block); }
+      }),
+      socials: commandDefinition("Show social profiles", "socials", () => { const block = outputBlock(); ["github","linkedin","telegram"].forEach(name => printLink(`${formatCategory(name)}: ${portfolioData.links[name]}`, portfolioData.links[name], block)); }),
+      resume: commandDefinition("Open or download the résumé PDF", "resume [open|download]", args => { const action = (args[0] || "").toLowerCase(); if (action === "open") return openSafe(portfolioData.links.resume, "Résumé PDF"); if (action === "download") return printLink("Download Mahdi Nouri Sani's résumé", portfolioData.links.resume, null, true); const block = outputBlock(); printText(`Résumé: ${portfolioData.links.resume}`, "", block); printLink("Open résumé PDF", portfolioData.links.resume, block); printText('Use "resume open" or "resume download".', "muted", block); }),
+      language: commandDefinition("Show spoken-language proficiency", "language", () => { const item = portfolioData.spokenLanguages[0]; printText(`${item.name.padEnd(9)}[${"★".repeat(item.proficiency)}${"☆".repeat(item.maximum-item.proficiency)}] ${item.proficiency}/${item.maximum}`); }),
+      open: commandDefinition("Open a predefined portfolio link", "open <github|linkedin|telegram|project|resume>", args => { const key = (args[0] || "").toLowerCase(); const project = portfolioData.projects.find(item => item.id === key); const targets = { github:portfolioData.links.github, linkedin:portfolioData.links.linkedin, telegram:portfolioData.links.telegram, resume:portfolioData.links.resume, asino:portfolioData.projects[0].url, "divan-lm":portfolioData.projects[1].repository, "decentralized-voting":portfolioData.projects[2].repository }; const url = project ? project.repository || project.url : targets[key]; if (!url) return printError(`open: ${key || "missing target"}: no predefined public URL`); openSafe(url, key); }),
+      pwd: commandDefinition("Print the virtual working directory", "pwd", () => printText(currentPath)),
+      ls: commandDefinition("List virtual directory contents", "ls [-la] [path]", args => {
+        const flags = args.filter(arg => arg.startsWith("-")); const target = args.find(arg => !arg.startsWith("-")) || "."; const path = normalizePath(target); if (!virtualDirs.has(path)) return printError(`ls: cannot access '${target}': No such directory`);
+        const items = childrenOf(path, flags.some(flag => flag.includes("a"))); if (!items.length) return printText(""); const long = flags.some(flag => flag.includes("l"));
+        if (long) printTable(["MODE","SIZE","NAME"], items.map(([name,type]) => [type === "dir" ? "dr-xr-xr-x" : "-r--r--r--", type === "dir" ? "—" : new Blob([virtualFiles.get(`${path}/${name}`) || ""]).size, type === "dir" ? `${name}/` : name])); else printText(items.map(([name,type]) => type === "dir" ? `${name}/` : name).join("  "));
+      }),
+      cd: commandDefinition("Change virtual working directory", "cd [path]", args => { const target = args[0] || "~"; const path = normalizePath(target); if (!virtualDirs.has(path)) return printError(`cd: ${target}: No such file or directory`); currentPath = path; updatePathUI(); }),
+      cat: commandDefinition("Read a virtual file", "cat <file>", args => { if (!args.length) return printError("cat: missing file operand"); args.forEach(target => { const path = normalizePath(target); if (!virtualFiles.has(path)) printError(`cat: ${target}: No such file or directory`); else printText(virtualFiles.get(path)); }); }),
+      tree: commandDefinition("Show the virtual filesystem tree", "tree [path] [-L 1|2]", args => {
+        const levelIndex = args.indexOf("-L"); const maxDepth = levelIndex >= 0 ? Number(args[levelIndex+1]) : 8; const target = args.find((arg,index) => !arg.startsWith("-") && index !== levelIndex+1) || "."; const path = normalizePath(target); if (!virtualDirs.has(path)) return printError(`tree: ${target}: No such directory`);
+        const lines = [target === "." ? "." : target]; let dirs = 0, files = 0;
+        function render(directory, prefix, depth) { if (depth >= maxDepth) return; const items = childrenOf(directory); items.forEach(([name,type], index) => { const last = index === items.length-1; lines.push(`${prefix}${last ? "└──" : "├──"} ${name}${type === "dir" ? "/" : ""}`); if (type === "dir") { dirs++; render(`${directory}/${name}`, `${prefix}${last ? "    " : "│   "}`, depth+1); } else files++; }); }
+        render(path,"",0); printText(lines.join("\n")); printText(`${plural(dirs,"directory")}, ${plural(files,"file")}`, "muted");
+      }),
+      find: commandDefinition("Search paths in the virtual filesystem", "find [path] [-name pattern|-iname pattern]", args => {
+        const pathArg = args[0] && !args[0].startsWith("-") ? args[0] : "."; const path = normalizePath(pathArg); if (!virtualDirs.has(path)) return printError(`find: '${pathArg}': No such directory`);
+        const flagIndex = args.findIndex(arg => arg === "-name" || arg === "-iname"); const pattern = flagIndex >= 0 ? args[flagIndex+1] : null; let regex = pattern ? globToRegExp(pattern) : null; const insensitive = args[flagIndex] === "-iname"; const base = path === ROOT ? "." : pathArg;
+        const results = [path, ...walkFiles(path), ...[...virtualDirs].filter(item => item.startsWith(`${path}/`))].filter((item,index,array) => array.indexOf(item) === index).filter(item => !regex || (insensitive ? new RegExp(regex.source,"i") : regex).test(item.split("/").pop())).map(item => item === path ? base : `${base === "." ? "." : base}/${item.slice(path.length+1)}`); printText(results.join("\n"));
+      }),
+      grep: commandDefinition("Search virtual text files", "grep [-i] <text> <file|directory>", args => {
+        const insensitive = args[0] === "-i"; const values = insensitive ? args.slice(1) : args; const [query,target] = values; if (!query || !target) return printError("grep: usage: grep [-i] <text> <file|directory>"); const path = normalizePath(target); const files = virtualDirs.has(path) ? walkFiles(path) : virtualFiles.has(path) ? [path] : [];
+        if (!files.length) return printError(`grep: ${target}: No such file or directory`); const needle = insensitive ? query.toLowerCase() : query; let matches = 0; const block = outputBlock(); files.forEach(file => virtualFiles.get(file).split("\n").forEach((line,index) => { const haystack = insensitive ? line.toLowerCase() : line; if (haystack.includes(needle)) { printText(`${fileLabel(file)}:${index+1}: ${line}`, "", block); matches++; } })); if (!matches) printText("No matches found.", "muted", block);
+      }),
+      uname: commandDefinition("Show fictional PortfolioOS information", "uname [-a]", args => printText(args.includes("-a") ? "PortfolioOS 1.0.0 mahdi-portfolio browser-terminal JavaScript/HTML5 portfolio-sh" : "PortfolioOS")),
+      hostname: commandDefinition("Show the fictional portfolio hostname", "hostname", () => printText("mahdi-portfolio")),
+      id: commandDefinition("Show the simulated portfolio identity", "id", () => { printText("uid=1000(guest) gid=1000(portfolio) groups=1000(portfolio),998(visitors)"); printText("PortfolioOS simulated identity; no device or OS data was accessed.", "muted"); }),
+      neofetch: commandDefinition("Show a terminal profile summary", "neofetch", () => {
+        const block = outputBlock(); const grid = document.createElement("div"); grid.className = "neofetch"; const logo = document.createElement("div"); logo.className = "arch-logo"; logo.textContent = "       /\\\n      /  \\\n     / /\\ \\\n    / ____  \\\n   /_/    \\__\\";
+        const info = document.createElement("div"); addKeyValue([["Name",portfolioData.identity.name],["Role",portfolioData.identity.role],["Location",portfolioData.identity.location],["Languages",portfolioData.skills.languages.join(", ")],["Backend",portfolioData.skills.backend.slice(0,4).join(", ")],["Databases",portfolioData.skills.databasesAndCaching.join(", ")],["Projects",portfolioData.projects.length],["Education",portfolioData.education[0].degree],["Shell","portfolio-sh"],["Terminal","browser-terminal"],["Theme",document.documentElement.dataset.theme],["Session",connected ? "connected" : "closed"]], info); grid.append(logo,info); block.append(grid);
+      }),
+      uptime: commandDefinition("Show this portfolio session's uptime", "uptime", () => { const seconds = Math.floor((Date.now()-sessionStarted)/1000); const hours = Math.floor(seconds/3600); const minutes = Math.floor((seconds%3600)/60); printText(`portfolio session up ${hours ? `${hours}h ` : ""}${minutes}m ${seconds%60}s`); }),
+      date: commandDefinition("Show the browser-local date and time", "date", () => printText(new Intl.DateTimeFormat(undefined,{dateStyle:"full",timeStyle:"long"}).format(new Date()))),
+      env: commandDefinition("Show fictional portfolio variables", "env", () => printText(["USER=guest","HOSTNAME=mahdi-portfolio","SHELL=/bin/portfolio-sh","HOME=/home/guest",`PORTFOLIO_OWNER=${portfolioData.identity.name}`,`PORTFOLIO_ROLE=${portfolioData.identity.role}`,`THEME=${document.documentElement.dataset.theme}`].join("\n"))),
+      which: commandDefinition("Locate simulated portfolio tools", "which <go|node|docker|mahdi|portfolio>", args => { const allowed = ["go","node","docker","mahdi","portfolio"]; const tool = (args[0]||"").toLowerCase(); if (!allowed.includes(tool)) return printError(`${tool || "which"} not found in simulated PATH`); printText(`/usr/local/portfolio/bin/${tool}`); }),
+      man: commandDefinition("Read concise portfolio manual pages", "man <portfolio|projects|skills|contact|ping>", args => { const pages = { portfolio:["PORTFOLIO(1)","Interactive browser terminal for Mahdi Nouri Sani's résumé.",'Run "help" to list safe, predefined commands.'], projects:["PROJECTS(1)",'List projects with "projects"; inspect one with "project <id>".'], skills:["SKILLS(1)",'Browse grouped skills. Options: --compact, --json, backend, blockchain, ai.'], contact:["CONTACT(1)",'Show public contact links. Phone output follows the privacy configuration.'], ping:["PING(1)",'Simulate 1–10 local replies. No network request is made. Ctrl+C cancels.'] }; const page = pages[(args[0]||"").toLowerCase()]; if (!page) return printError(`No manual entry for ${args[0] || "missing topic"}`); const block=outputBlock(); page.forEach((line,index)=>printText(line,index===0?"bright":"",block)); }),
+      git: commandDefinition("Run simulated portfolio git views", "git <status|log|branch|remote|config>", args => {
+        const sub = args[0]; if (sub === "status") return printText("On branch main\nYour portfolio is up to date.\nnothing to commit, working tree clean"); if (sub === "branch") return printText("* main", "success"); if (sub === "remote" && args[1] === "-v") return printText(`portfolio\t${portfolioData.links.github} (fetch)\nportfolio\t${portfolioData.links.github} (push)`); if (sub === "config" && args[1] === "user.name") return printText(portfolioData.identity.name); if (sub === "config" && args[1] === "user.email") return printText(portfolioData.identity.email);
+        if (sub === "log") { const entries = [...portfolioData.projects].reverse().map(project => ({ key:`project-${project.number}`, date:project.end, text:`completed ${project.name}` })); portfolioData.experience.forEach(item => entries.push({key:`work-${item.id}`,date:item.start,text:`joined ${item.company} as ${item.role}`})); if (args.includes("--oneline")) return printText(entries.map(item => `${item.key.padEnd(18)} ${item.text}`).join("\n")); return printText(entries.map(item => `entry ${item.key}\nDate: ${item.date}\n\n    ${item.text}`).join("\n\n")); }
+        printError("git: supported: status, log [--oneline], branch, remote -v, config user.name, config user.email");
+      }),
+      ping: commandDefinition("Simulate local ping output", "ping [-c 1..10] <host>", async args => {
+        const countIndex = args.indexOf("-c"); const count = countIndex >= 0 ? Number(args[countIndex+1]) : 4; const host = args.find((arg,index) => !arg.startsWith("-") && index !== countIndex+1); const allowed = ["github.com","asino.ir","portfolio","localhost"];
+        if (!host) return printError("ping: missing host"); if (!allowed.includes(host.toLowerCase())) return printError(`ping: ${host}: only predefined simulated hosts are available`); if (!Number.isInteger(count) || count < 1 || count > 10) return printError("ping: -c must be an integer from 1 to 10");
+        const operation = { cancelled:false }; activeOperation = operation; const block = outputBlock(); printText(`PING ${host} (simulated): 56 data bytes`, "accent", block); let received = 0;
+        for (let sequence=1; sequence<=count; sequence++) { if (operation.cancelled) break; if (!reducedMotion.matches) await delay(300); if (operation.cancelled) break; const latency=(12+Math.random()*11).toFixed(1); printText(`64 bytes from ${host}: icmp_seq=${sequence} ttl=57 time=${latency} ms`, "", block); received++; }
+        if (operation.cancelled) printText("^C", "warning", block); printText(`--- ${host} simulated ping statistics ---`, "", block); printText(`${count} packets transmitted, ${received} received, ${Math.round((count-received)/count*100)}% packet loss`, "", block); if (activeOperation === operation) activeOperation = null;
+      }),
+      curl: commandDefinition("Read predefined portfolio JSON resources", "curl /api/<profile|projects|skills|contact>", args => { const resources = { "/api/profile":{ identity:{ name:portfolioData.identity.name, role:portfolioData.identity.role, headline:portfolioData.identity.headline, location:portfolioData.identity.location }, summary:portfolioData.summary }, "/api/projects":portfolioData.projects, "/api/skills":portfolioData.skills, "/api/contact":{ email:portfolioData.identity.email, github:portfolioData.links.github, linkedin:portfolioData.links.linkedin, telegram:portfolioData.links.telegram, location:portfolioData.identity.location } }; const resource=resources[args[0]]; if (!resource) return printError("curl: external network access is disabled in this portfolio simulation"); printJson(resource); }),
+      echo: commandDefinition("Print text safely", "echo [text]", (args, context) => { const value = context.raw.replace(/^\s*echo(?:\s+|$)/i, ""); const parsed = tokenize(value); printText(parsed.tokens.join(" ")); }),
+      history: commandDefinition("Show or clear command history", "history [clear]", args => { if (args[0]?.toLowerCase()==="clear") { commandHistory=[]; historyIndex=0; writeStorage("portfolio-command-history",commandHistory); return printSuccess("Command history cleared."); } printText(commandHistory.map((item,index)=>`${String(index+1).padStart(3)}  ${item}`).join("\n")); }),
+      clear: commandDefinition("Clear terminal output", "clear", () => { historyElement.replaceChildren(); }),
+      banner: commandDefinition("Show the welcome banner", "banner", () => showBanner()),
+      reboot: commandDefinition("Replay the simulated startup", "reboot", async () => { stopMatrix(); historyElement.replaceChildren(); inputElement.disabled=true; await startup(); }),
+      exit: commandDefinition("Close the simulated session", "exit", async () => { printText("Saving session...", "warning"); await delay(reducedMotion.matches?0:250); printText("Connection to mahdi-portfolio closed.", "muted"); connected=false; inputElement.disabled=true; reconnectButton.classList.add("visible"); document.querySelector(".session-dot").style.background="var(--error)"; document.querySelector(".session-label").textContent="CLOSED"; }),
+      theme: commandDefinition("Inspect or change the terminal theme", "theme [list|name]", args => { const requested=(args[0]||"").toLowerCase(); if (!requested) return printText(`Current theme: ${document.documentElement.dataset.theme}`); if (requested==="list") return printText(THEMES.join("  ")); if (!THEMES.includes(requested)) return printError(`theme: unknown theme: ${requested}`); applyTheme(requested,true); printSuccess(`Theme changed to ${requested}.`); }),
+      sudo: commandDefinition("Handle harmless sudo easter eggs", "sudo [hire-me|make me a sandwich]", args => { const phrase=args.join(" ").toLowerCase(); if (phrase==="hire-me") { const block=outputBlock(); printSuccess("Candidate profile unlocked: public contact channels only.",block); printLink(`Email: ${portfolioData.identity.email}`,`mailto:${portfolioData.identity.email}`,block); printLink(`GitHub: ${portfolioData.links.github}`,portfolioData.links.github,block); return; } if (phrase==="make me a sandwich") return printText("A backend developer prepared the API; the sandwich remains client-side."); printError("guest is not in the sudoers file. This simulated incident will not be reported."); }),
+      rm: commandDefinition("Protect the simulated filesystem", "rm -rf /", args => { if (args.join(" ")==="-rf /") return printError("rm: refused: the simulated portfolio filesystem is read-only and protected"); printError("rm: write operations are disabled in this portfolio simulation"); }),
+      coffee: commandDefinition("Brew a small ASCII coffee", "coffee", () => printText("   ( (\n    ) )\n  ........\n  |      |]\n  \\      /\n   `----'", "warning")),
+      fortune: commandDefinition("Print a backend quotation", "fortune", () => { const fortunes=["Make invalid states unrepresentable.","A boring deployment is a successful deployment.","Measure first; optimize second.","Interfaces are promises. Keep them small."]; printText(fortunes[Math.floor(Math.random()*fortunes.length)]); }),
+      cowsay: commandDefinition("Render a short safe ASCII message", "cowsay <text>", args => { const text=(args.join(" ")||"hello").slice(0,48); const border="-".repeat(text.length+2); printText(` ${border}\n< ${text} >\n ${border}\n        \\   ^__^\n         \\  (oo)\\_______\n            (__)\\       )\\/\\\n                ||----w |\n                ||     ||`); }),
+      matrix: commandDefinition("Run a bounded visual effect", "matrix [stop]", args => { if (args[0]?.toLowerCase()==="stop") { stopMatrix(); return printSuccess("Matrix effect stopped."); } startMatrix(); })
+    };
+
+    /* Theme System */
+    function applyTheme(theme, persist=false) { if (!THEMES.includes(theme)) theme="arch"; document.documentElement.dataset.theme=theme; document.getElementById("status-theme").textContent=theme; document.querySelector(".title-theme").textContent=theme; if (persist) writeStorage("portfolio-theme",theme); const colors={arch:"#070b10",graphite:"#090b0e",matrix:"#020704",amber:"#0d0903",ubuntu:"#100b12",light:"#e9e7e1"}; document.querySelector('meta[name="theme-color"]').content=colors[theme]; }
+    function startMatrix() {
+      stopMatrix(); if (reducedMotion.matches) { printWarning("Matrix effect simplified because reduced motion is enabled."); return; }
+      const overlay=document.createElement("div"); overlay.className="matrix-overlay"; overlay.setAttribute("aria-hidden","true"); document.body.append(overlay);
+      const columns=Math.min(24,Math.ceil(innerWidth/50)); for(let index=0;index<columns;index++){ const column=document.createElement("span"); column.className="matrix-column"; column.style.left=`${index*100/columns}%`; column.style.setProperty("--speed",`${3+Math.random()*3}s`); column.textContent=Array.from({length:28},()=>String.fromCharCode(0x30A0+Math.floor(Math.random()*80))).join("\n"); overlay.append(column); }
+      matrixTimer=setTimeout(()=>stopMatrix(),8000); printSuccess('Matrix effect enabled for 8 seconds. Run "matrix stop" to stop it.');
+    }
+    function stopMatrix(){ if(matrixTimer){clearTimeout(matrixTimer);matrixTimer=null;} document.querySelector(".matrix-overlay")?.remove(); }
+
+    /* Keyboard Handling */
+    formElement.addEventListener("submit", async event => { event.preventDefault(); if (!connected || inputElement.disabled) return; const value=inputElement.value; inputElement.value=""; await runCommand(value); inputElement.focus(); });
+    inputElement.addEventListener("keydown", event => {
+      if (event.key==="ArrowUp") { event.preventDefault(); if (historyIndex>0) inputElement.value=commandHistory[--historyIndex]||""; inputElement.setSelectionRange(inputElement.value.length,inputElement.value.length); }
+      else if (event.key==="ArrowDown") { event.preventDefault(); if (historyIndex<commandHistory.length) historyIndex++; inputElement.value=commandHistory[historyIndex]||""; inputElement.setSelectionRange(inputElement.value.length,inputElement.value.length); }
+      else if (event.key==="Escape") { inputElement.value=""; }
+      else if (event.key==="Tab") { event.preventDefault(); autocomplete(); }
+      else if (event.ctrlKey && event.key.toLowerCase()==="l") { event.preventDefault(); historyElement.replaceChildren(); }
+      else if (event.ctrlKey && event.key.toLowerCase()==="c" && activeOperation) { event.preventDefault(); activeOperation.cancelled=true; }
+    });
+    function autocomplete() {
+      const value=inputElement.value; const first=value.trimStart().split(/\s/)[0].toLowerCase(); if (!first || value.trim().includes(" ")) return;
+      const matches=Object.keys(commands).concat(Object.keys(aliases)).filter(name=>name.startsWith(first)).sort(); if(matches.length===1){ inputElement.value=value.replace(first,matches[0]); inputElement.setSelectionRange(inputElement.value.length,inputElement.value.length); } else if(matches.length>1){ printCommand(value); printText(matches.join("  "),"accent"); }
+    }
+    terminalElement.addEventListener("pointerdown", event => { if (!event.target.closest("a,button") && connected) inputElement.focus({preventScroll:true}); });
+    reconnectButton.addEventListener("click", async () => { connected=true; reconnectButton.classList.remove("visible"); document.querySelector(".session-dot").style.background=""; document.querySelector(".session-label").textContent="CONNECTED"; inputElement.disabled=false; printSuccess("Connection re-established."); showBanner(); inputElement.focus(); });
+    document.addEventListener("visibilitychange",()=>{ if(document.hidden) stopMatrix(); });
+
+    /* Startup */
+    function updateClock(){ document.getElementById("status-clock").textContent=new Intl.DateTimeFormat(undefined,{hour:"2-digit",minute:"2-digit",hour12:false}).format(new Date()); }
+    function showBanner(){
+      const block=outputBlock(); const wide=document.createElement("div"); wide.className="ascii"; wide.textContent="███╗   ███╗ █████╗ ██╗  ██╗██████╗ ██╗    ███╗   ██╗ ██████╗ ██╗   ██╗██████╗ ██╗\n████╗ ████║██╔══██╗██║  ██║██╔══██╗██║    ████╗  ██║██╔═══██╗██║   ██║██╔══██╗██║\n██╔████╔██║███████║███████║██║  ██║██║    ██╔██╗ ██║██║   ██║██║   ██║██████╔╝██║\n██║╚██╔╝██║██╔══██║██╔══██║██║  ██║██║    ██║╚██╗██║██║   ██║██║   ██║██╔══██╗██║\n██║ ╚═╝ ██║██║  ██║██║  ██║██████╔╝██║    ██║ ╚████║╚██████╔╝╚██████╔╝██║  ██║██║\n╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝ ╚═╝    ╚═╝  ╚═══╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚═╝\n                         BACKEND DEVELOPER";
+      const compact=document.createElement("div"); compact.className="compact-banner"; compact.textContent="MAHDI NOURI SANI\nBACKEND DEVELOPER"; block.append(wide,compact);
+    }
+    async function startup(){
+      const lines=["[ OK ] Initializing PortfolioOS","[ OK ] Loading résumé data","[ OK ] Mounting project filesystem","[ OK ] Starting command registry","[ OK ] Restoring terminal preferences","","Connecting to mahdi-portfolio...","Connection established.","","Welcome to PortfolioOS.",'Type "help" to list available commands.'];
+      const block=outputBlock(); for(const line of lines){ printText(line,line.startsWith("[ OK ]")||line==="Connection established."?"success":line.startsWith("Connecting")?"muted":"",block); if(!reducedMotion.matches) await delay(line ? 105 : 35); }
+      showBanner(); inputElement.disabled=false; connected=true; inputElement.focus({preventScroll:true}); writeStorage("portfolio-startup-seen",true);
+    }
+    applyTheme(readStorage("portfolio-theme","arch")); updatePathUI(); updateClock(); setInterval(updateClock,30000); inputElement.disabled=true; startup();
+  </script>
+</body>
 </html>
